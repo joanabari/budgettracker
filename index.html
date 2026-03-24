@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Budget Tracker — Log expenses, categorize them, and view spending breakdowns." />
+  <title>Budget Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <div class="header-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2.5"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+      </div>
+      <div>
+        <h1 class="header-title">Budget Tracker</h1>
+        <p class="header-subtitle">Log expenses, track spending</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+
+    <section class="card" aria-labelledby="form-title">
+      <div class="card-header">
+        <h2 id="form-title" class="card-title">Add Expense</h2>
+      </div>
+      <div class="card-content">
+        <form id="expense-form" class="form-grid" novalidate>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" placeholder="Coffee, groceries…" maxlength="100" />
+            <p class="error-msg" id="err-description"></p>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount ($)</label>
+            <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" />
+            <p class="error-msg" id="err-amount"></p>
+          </div>
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category">
+              <option value="">Select category</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Bills">Bills</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Other">Other</option>
+            </select>
+            <p class="error-msg" id="err-category"></p>
+          </div>
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" />
+            <p class="error-msg" id="err-date"></p>
+          </div>
+          <div class="form-group full-width">
+            <button type="submit" class="btn btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              Add Expense
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="summary-grid" aria-label="Spending summary">
+      <div class="card">
+        <div class="card-header row-between">
+          <span class="card-label">Total Spent</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-muted"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="card-content">
+          <div id="total-amount" class="big-number">$0.00</div>
+          <p id="expense-count" class="card-meta">0 expenses logged</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header row-between">
+          <span class="card-label">By Category</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-muted"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <div class="card-content" id="category-breakdown">
+          <p class="card-meta">No expenses yet</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="list-title">
+      <div class="card-header row-between flex-wrap">
+        <h2 id="list-title" class="card-title">Expenses</h2>
+        <div class="list-controls">
+          <select id="filter-category" aria-label="Filter by category">
+            <option value="All">All Categories</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Bills">Bills</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Other">Other</option>
+          </select>
+          <button type="button" id="clear-all-btn" class="btn btn-danger" style="display:none;">Clear All</button>
+        </div>
+      </div>
+      <div class="card-content">
+        <div id="expense-list" class="expense-list">
+          <p class="card-meta center">No expenses yet — add one above!</p>
+        </div>
+      </div>
+    </section>
+
+    <div id="confirm-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display:none;">
+      <div class="modal-box">
+        <h3 id="modal-title">Clear all expenses?</h3>
+        <p>This will permanently delete all your logged expenses. This action cannot be undone.</p>
+        <div class="modal-actions">
+          <button type="button" id="modal-cancel" class="btn btn-outline">Cancel</button>
+          <button type="button" id="modal-confirm" class="btn btn-danger">Yes, clear all</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Budget Tracker — Data stored locally in your browser
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
