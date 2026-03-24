@@ -6,4 +6,4 @@
 
 **Link to live site:** [https://joanabari.github.io/budgettracker/]
 
-**What I've learned:** 
+**What I've learned:** Through building this project, I learned how to create a functional web application using HTML, CSS, and JavaScript. I improved my ability to manage user input, store and display data dynamically, and organize information into categories. I also gained experience working with event listeners, handling forms, and updating the user interface in real time. Additionally, I learned how to deploy a website using GitHub Pages and make it accessible online.
