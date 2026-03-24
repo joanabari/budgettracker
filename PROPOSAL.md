@@ -1,6 +1,6 @@
 ## Budget Tracker Proposal
 
-**What I'm building:** [I am building a budget tracker where you can put your spendings and be finically responsible.]
-**Who it's for / Why:** [I made this thinking about me and other college students because I have a budget given by my parents and I see myself always spending it and then being left with no money. If I had a place to store it directly, it would help me plan better.]
-**Core features:** [You can write descriptions of the items and how much you spent on it,and then it adds it up, and also devides it by diferent categories.]
-**What I don't know yet:** 
+**What I'm building:** I am building a budget tracker where you can put your spendings and be finically responsible.
+**Who it's for / Why:** I designed this tool for myself and other college students who are trying to manage a limited budget. As a student with a set allowance, I often find myself spending too quickly and running out of money. Having a tool that tracks expenses in one place helps with planning, awareness, and better financial decisions.
+**Core features:** Users can enter a description, amount, date, and category for each expense. The tool stores all entries, calculates the total spending, and organizes expenses into different categories to give a clearer overview of spending habits.
+**What I don't know yet:** I am still figuring out how to improve the user experience by adding features like saving data permanently (so it doesn’t disappear when the page reloads), creating visual charts or graphs for spending, and possibly adding a monthly budget limit with alerts when the user is close to overspending.
